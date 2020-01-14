@@ -1,4 +1,6 @@
 export const FETCH_POSTS = 'FETCH_POSTS'
+export const TOGGLE_EDIT = 'TOGGLE_EDIT'
+export const CHANGE_TEXT = 'CHANGE_TEXT'
 export const EDIT_POST = 'EDIT_POST'
 export const SET_QUERY = 'SET_QUERY'
 
@@ -10,6 +12,18 @@ export const fetchPosts = () => {
             payload: posts
         }))
 }
+
+export const toggleEdit = post => ({
+    type: TOGGLE_EDIT,
+    id: post.id
+})
+
+export const changeText = post => ({
+    type: CHANGE_TEXT,
+    id: post.id,
+    newTitle: post.newTitle,
+    newBody: post.newBody
+})
 
 export const editPost = post => ({
     type: EDIT_POST,

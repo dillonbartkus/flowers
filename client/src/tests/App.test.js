@@ -1,12 +1,12 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { act } from "react-dom/test-utils";
 import App from '../App';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux'
 import rootReducer from '../reducers'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, applyMiddleware(thunk))
 
 it('renders without crashing', () => {
   const div = document.createElement('div');

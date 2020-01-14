@@ -1,52 +1,56 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { editPost } from '../actions'
 import { toggleEdit } from '../actions'
+import { changeText } from '../actions'
 
 const Post = props => {
 
   const { dispatch, post } = props
 
-  const [edit, setEdit] = useState(false)
-  const [newTitle, setNewTitle] = useState(post.title)
-  const [newBody, setNewBody] = useState(post.body)
-
-  return (
+  if(post.edit)return (
 
     <div className= "post">
 
-      { edit ?
       <textarea
       name = 'title'
-      value = {newTitle}
-      onChange = { e => setNewTitle(e.target.value) }
-      ></textarea> :
+      value = {post.newTitle}
+      onChange = { e => dispatch(changeText({id: post.id, newTitle: e.target.value, newBody: post.newBody})) }
+      ></textarea>
 
-      <p onClick = { () => setEdit(!edit) }>{post.title}</p> }
-
-      { edit ?
       <textarea
       name = 'body'
-      value = {newBody}
-      onChange = { e => setNewBody(e.target.value) }
-      ></textarea> :
+      value = {post.newBody}
+      onChange = { e => dispatch(changeText({id: post.id, newBody: e.target.value, newTitle: post.newTitle})) }
+      ></textarea>
 
-      <p onClick = { () => setEdit(!edit) }>{post.body}</p> }
-
-      { edit && <button
-      onClick = { () => {
-        setEdit(!edit)
+      <button
+      onClick = { () => {        
+        dispatch(toggleEdit({id: post.id}))
         dispatch(editPost({
           id: post.id,
-          title: newTitle,
-          body: newBody
+          title: post.newTitle,
+          body: post.newBody
         }))
       }}
-      >
-      Submit
-      </button> }
+      >Submit</button>
 
     </div>
+
+  )
+
+  return(
+
+    <div
+    onClick = { () => dispatch(toggleEdit({id: post.id})) }
+    className= "post">
+
+      <p>{post.title}</p>
+
+      <p>{post.body}</p>
+
+    </div>
+
   )
 }
 

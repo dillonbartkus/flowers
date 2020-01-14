@@ -5,6 +5,8 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Raleway', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f4f4f4;
+  color: #4a4a4a;
 }
 
 code {
@@ -17,27 +19,76 @@ code {
   text-align: center;
 }
 
+.search-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
 input {
+  background-color: #f4f4f4;
   border: none;
   outline: none;
-  margin-top: 5%;
-  width: 33%;
+  margin-top: 3%;
+  width: 400px;
   border-bottom: 1px solid;
   font-size: 24px;
   line-height: 36px;
+  margin-top: 0;
+  margin-right: 10px;
+}
+
+.reset-button {
+  cursor: pointer;
+  color: red;
+  height: 25px;
+  width: 25px;
+  font-size: 24px;
 }
 
 .results {
-  margin-top: 5%;
+  margin-top: 3%;
   display: flex;
   flex-wrap: wrap;
+  position: relative;
+}
+
+.autocomplete-container {
+  position: absolute;
+  width: 50%;
+  left: 0;
+	right: 0;
+	margin-left: auto;
+ 	margin-right: auto;
+  background-color: #fff;
+}
+
+.autocomplete-option {
+  cursor: pointer;
+  display: flex;
+  outline: 1px solid;
+  padding: 5px;
+}
+
+.query {
+  color: green;
+  font-weight: 600;
+}
+
+.autocomplete-option > * {
+  margin: 0;
 }
 
 .post {
   width: 30%;
   min-height: 225px;
-  margin: 5% auto;
+  margin: 3% auto;
   outline: 1px solid;
+}
+
+.post:hover {
+  cursor: pointer;
 }
 
 .post > * {
@@ -50,19 +101,36 @@ input {
 
 .post > textarea {
   margin: 10px auto;
+  background-color: #f4f4f4;
   width: 75%;
   min-height: 22%;
   font-size: 14px;
   outline: 0;
 }
 
+.post > textarea:first-of-type {
+  min-height: 12%;
+}
+
 .post > button {
   width: 75%;
   border: 0;
-  outline: 0;
+  outline: 1px solid;
   cursor: pointer;
-  background: rgba(53, 190, 224, 0.8);
-  border-radius: 6px;
-  color: #FFF;
   font-weight: 600;
+  font-size: 14px;
+  background-color: #f4f4f4;
+}
+
+.post > button:hover {
+  color: #f4f4f4;
+  background: black;
+}
+
+@media only screen and (max-width: 900px){
+
+  .post {
+    width: 45%;
+  }
+
 }

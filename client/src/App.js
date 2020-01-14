@@ -6,11 +6,11 @@ import { fetchPosts } from './actions'
 
 const App = ( props ) => {
 
-  const { dispatch, posts } = props
+  const { dispatch, posts, query } = props
   
   useEffect( () => {
     dispatch(fetchPosts())
-  }, [])
+  }, [dispatch])
 
   return (
 
@@ -18,16 +18,17 @@ const App = ( props ) => {
 
       <h1>Lorem Ipsum</h1>
 
-      <Input />
+      <Input query = {query} />
 
-      <Results posts = {posts} />
+      <Results query = {query} posts = {posts} />
 
     </div>
   )
 }
 
 const mapStateToProps = state => ({
-  posts: state.posts
+  posts: state.posts,
+  query: state.query
 })
 
 export default connect(mapStateToProps)(App)

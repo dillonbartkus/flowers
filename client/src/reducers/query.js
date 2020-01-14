@@ -1,10 +1,12 @@
 import { SET_QUERY } from '../actions'
 
 const query = (state = '', action) => {
-    if(action.type === SET_QUERY) {
-        return state, action.query
-    } else return state
-
+    switch(action.type) {
+        case SET_QUERY:
+            return action.query
+        default:
+            return state
+    }
 }
 
 export default query

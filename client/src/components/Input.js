@@ -2,20 +2,27 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { setQuery } from '../actions'
 
-const Input = ({ dispatch }) => {
+const Input = ( props ) => {
 
-    const autoComplete = e => {
-        
-    }
+  const { dispatch, query } = props
 
   return (
 
-    <input
-    autoFocus
-    onChange = { e => dispatch(setQuery(e.target.value)) }
-    // onChange = { e => autoComplete(e) }
-    >
-    </input>
+    <div className = 'search-bar'>
+
+      <input
+      autoFocus
+      value = {query}
+      onChange = { e => dispatch(setQuery(e.target.value)) }
+      >
+      </input>
+
+      <div
+      onClick = { () => dispatch(setQuery('')) }
+      className = 'reset-button'>X</div>
+
+    </div>
+
   )
 }
 
