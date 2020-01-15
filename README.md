@@ -1,9 +1,9 @@
 To start:
 
-clone
-npm i
-node app.js
-cd /client
-npm i
-npm start
-npm test
+<p>clone</p>
+<p>cd flowers</p>
+<p>npm i</p>
+<p>cd /client</p>
+<p>npm i</p>
+<p>npm start</p>
+<p>npm test</p>
