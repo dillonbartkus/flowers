@@ -1,14 +1,15 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { editPost } from '../actions'
-import { toggleEdit } from '../actions'
-import { changeText } from '../actions'
+import { editPost } from '../actions/actions'
+import { toggleEdit } from '../actions/actions'
+import { changeText } from '../actions/actions'
 
 const Post = props => {
 
   const { dispatch, post } = props
 
-  if(post.edit)return (
+  if(post.edit)return (  // edit form toggles when text is clicked
 
     <div className= "post">
 
@@ -25,7 +26,7 @@ const Post = props => {
       ></textarea>
 
       <button
-      onClick = { () => {        
+      onClick = { () => {  // replaces title and body of post with placeholder newTitle and newBody. Also toggles form edit off.
         dispatch(toggleEdit({id: post.id}))
         dispatch(editPost({
           id: post.id,
@@ -52,6 +53,10 @@ const Post = props => {
     </div>
 
   )
+}
+
+Post.propTypes = {
+  post: PropTypes.object.isRequired
 }
 
 export default connect()(Post)

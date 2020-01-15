@@ -1,4 +1,4 @@
-import { SET_QUERY } from '../actions'
+import { SET_QUERY } from '../actions/actions'
 
 const query = (state = '', action) => {
     switch(action.type) {

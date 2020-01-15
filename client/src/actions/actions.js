@@ -11,6 +11,7 @@ export const fetchPosts = () => {
             type: FETCH_POSTS,
             payload: posts
         }))
+        .catch(err => console.log(err.message))
 }
 
 export const toggleEdit = post => ({
@@ -18,14 +19,14 @@ export const toggleEdit = post => ({
     id: post.id
 })
 
-export const changeText = post => ({
+export const changeText = post => ({  // uses placeholder newTitle and newBody to used in onChange handler, so user can.
     type: CHANGE_TEXT,
     id: post.id,
     newTitle: post.newTitle,
     newBody: post.newBody
 })
 
-export const editPost = post => ({
+export const editPost = post => ({ // replaces title and body with newTitle and newBody
     type: EDIT_POST,
     id: post.id,
     title: post.title,

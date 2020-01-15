@@ -1,7 +1,8 @@
 import React from 'react'
 import Post from './Post'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { setQuery } from '../actions'
+import { setQuery } from '../actions/actions'
 
 const Results = ( props ) => {
 
@@ -12,7 +13,7 @@ const Results = ( props ) => {
 
   const autoComplete = () => { // filters post titles that include search query and maps out a list of them in a dropdown menu.
     if(query.length > 2 && query.length < 10) {
-      return filteredPosts.map( post => {
+      return filteredPosts.map( post => { // seperate query from predicted title for styling purposes.
         const queryInd = post.title.indexOf(query)
         const leftHalf = post.title.substring(0, queryInd)
         const rightHalf = post.title.substring(queryInd + query.length, post.title.length -1)
@@ -28,7 +29,7 @@ const Results = ( props ) => {
     })
   }}
 
-  const renderPosts = () => {
+  const renderPosts = () => {  // renders posts with titles that match search query.
     if(posts.length > 0) {
       return filteredPosts.map( post => <Post post = {post} key = {post.id} /> )
     }
@@ -38,7 +39,7 @@ const Results = ( props ) => {
 
     <div className = 'results'>
 
-      <div className = 'autocomplete-container'>
+      <div className = {`autocomplete-container ${query.length > 2 && query.length < 10 ? 'show' : 'hide'}`}>
         {autoComplete()}
       </div>
 
@@ -46,6 +47,10 @@ const Results = ( props ) => {
 
     </div>
   )
+}
+
+Results.propTypes = {
+  query: PropTypes.string.isRequired
 }
 
 export default connect()(Results)

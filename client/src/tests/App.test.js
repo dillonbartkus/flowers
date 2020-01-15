@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import App from '../App';
 import { Provider } from 'react-redux';
-import rootReducer from '../reducers'
+import rootReducer from '../reducers/reducers'
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 
@@ -13,27 +13,45 @@ it('renders without crashing', () => {
   render(<Provider store = {store}> <App /> </Provider>, div);
 });
 
-it("fetches post data", async () => {
-  const fakePost = {
-    id: 1,
-    title: "lorem ipsum",
-    body: "quid pro quo"
-  };
+const thunkFn = ({ dispatch, getState }) => next => action => {
+  if(typeof action === 'function') {
+    return action(dispatch, getState)
+  }
+  return next(action)
+}
 
-  jest.spyOn(global, "fetch").mockImplementation(() =>
-    Promise.resolve({
-      json: () => Promise.resolve(fakePost)
-    })
-  );
+const create = () => {
+  const store = {
+    getState: jest.fn(() => ({})),
+    dispatch: jest.fn()
+  }
+  const next = jest.fn()
 
-  expect(fakePost).toEqual(
-    expect.objectContaining({
-      id: expect.any(Number),
-      title: expect.any(String),
-      body: expect.any(String)
-    })
-  )
+  const invoke = action => thunkFn(store)(next)(action)
 
-  global.fetch.mockRestore();
+  return { store, next, invoke }
+}
 
-});
+it('passes through non-function action', () => {
+  const { next, invoke } = create()
+  const action = { type: 'TEST '}
+  invoke(action)
+  expect(next).toHaveBeenCalledWith(action)
+})
+
+it('calls the function', () => {
+  const { invoke } = create()
+  const fn = jest.fn()
+  invoke(fn)
+  expect(fn).toHaveBeenCalled()
+})
+
+it('dispatches and gets state', () => {
+  const { store, invoke } = create()
+  invoke((dispatch, getState) => {
+    dispatch('TEST DISPATCH')
+    getState()
+  })
+  expect(store.dispatch).toHaveBeenCalledWith('TEST DISPATCH')
+  expect(store.getState).toHaveBeenCalled()
+})

@@ -20,6 +20,9 @@ code {
 }
 
 .search-bar {
+  position: relative;
+  width: 440px;
+  margin: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -27,28 +30,29 @@ code {
 }
 
 input {
+  width: 100%;
   background-color: #f4f4f4;
-  border: none;
+  border-radius: 50px;
   outline: none;
   margin-top: 3%;
-  width: 400px;
-  border-bottom: 1px solid;
+  margin-bottom: 3%;
+  border: 1px solid;
   font-size: 24px;
   line-height: 36px;
-  margin-top: 0;
-  margin-right: 10px;
+  padding: 3px 50px 3px 20px;
 }
 
 .reset-button {
+  position: absolute;
+  right: 20px;
   cursor: pointer;
-  color: red;
+  color: 4a4a4a;
   height: 25px;
   width: 25px;
   font-size: 24px;
 }
 
 .results {
-  margin-top: 3%;
   display: flex;
   flex-wrap: wrap;
   position: relative;
@@ -56,19 +60,31 @@ input {
 
 .autocomplete-container {
   position: absolute;
-  width: 50%;
+  width: 55%;
+  max-height: 300px;
+  overflow: scroll;
   left: 0;
-	right: 0;
+  right: 0;
+  top: 5px;
 	margin-left: auto;
  	margin-right: auto;
   background-color: #fff;
+  opacity: 0;
+}
+
+.autocomplete-container.show {
+  opacity: 1;
 }
 
 .autocomplete-option {
   cursor: pointer;
   display: flex;
-  outline: 1px solid;
+  border: 1px solid;
   padding: 5px;
+}
+
+.autocomplete-option:hover {
+  background-color: #f4f4f4;
 }
 
 .query {
@@ -81,9 +97,10 @@ input {
 }
 
 .post {
+  background-color: #fff;
   width: 30%;
   min-height: 225px;
-  margin: 3% auto;
+  margin: 2.5% auto;
   outline: 1px solid;
 }
 

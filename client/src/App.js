@@ -2,14 +2,14 @@ import React, { useEffect } from 'react'
 import Input from './components/Input'
 import Results from './components/Results'
 import { connect } from 'react-redux'
-import { fetchPosts } from './actions'
+import { fetchPosts } from './actions/actions'
 
 const App = ( props ) => {
 
   const { dispatch, posts, query } = props
   
   useEffect( () => {
-    dispatch(fetchPosts())
+    dispatch(fetchPosts()) // fetches posts from server.
   }, [dispatch])
 
   return (
@@ -26,7 +26,7 @@ const App = ( props ) => {
   )
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = state => ({ // posts and search query are saved as props and passed down.
   posts: state.posts,
   query: state.query
 })
