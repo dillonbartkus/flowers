@@ -4,7 +4,7 @@ import Results from './components/Results'
 import { connect } from 'react-redux'
 import { fetchPosts } from './actions/actions'
 
-const App = ( props ) => {
+export const App = ( props ) => {
 
   const { dispatch, posts, query } = props
   

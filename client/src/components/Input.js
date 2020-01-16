@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { setQuery } from '../actions/actions'
 
-const Input = ( props ) => {
+export const Input = ( props ) => {
 
   const { dispatch, query } = props
 
@@ -24,7 +24,6 @@ const Input = ( props ) => {
       className = 'reset-button'>X</div> }
 
     </div>
-
   )
 }
 

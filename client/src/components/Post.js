@@ -5,7 +5,7 @@ import { editPost } from '../actions/actions'
 import { toggleEdit } from '../actions/actions'
 import { changeText } from '../actions/actions'
 
-const Post = props => {
+export const Post = props => {
 
   const { dispatch, post } = props
 

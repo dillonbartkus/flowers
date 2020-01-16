@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { setQuery } from '../actions/actions'
 
-const Results = ( props ) => {
+export const Results = ( props ) => {
 
   const { dispatch, posts, query } = props
 
@@ -20,7 +20,8 @@ const Results = ( props ) => {
         return (
           <div
           onClick = { () => dispatch(setQuery(post.title)) } // when clicked, sets search query to predicted title
-          className = 'autocomplete-option' key = {post.title}>
+          className = 'autocomplete-option'
+          key = {post.id}>
           <p className = 'left'>{leftHalf}</p>
           <p className = 'query'>{query}</p>
           <p className = 'right'>{rightHalf}</p>
