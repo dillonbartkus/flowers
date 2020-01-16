@@ -90,10 +90,12 @@ input {
 .query {
   color: green;
   font-weight: 600;
+  margin: 0 2px;
 }
 
 .autocomplete-option > * {
-  margin: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .post {

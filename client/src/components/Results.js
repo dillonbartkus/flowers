@@ -16,7 +16,7 @@ export const Results = ( props ) => {
       return filteredPosts.map( post => { // seperate query from predicted title for styling purposes.
         const queryInd = post.title.indexOf(query)
         const leftHalf = post.title.substring(0, queryInd)
-        const rightHalf = post.title.substring(queryInd + query.length, post.title.length -1)
+        const rightHalf = post.title.substring(queryInd + query.length, post.title.length)        
         return (
           <div
           onClick = { () => dispatch(setQuery(post.title)) } // when clicked, sets search query to predicted title

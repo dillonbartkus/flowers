@@ -15,7 +15,7 @@ export const Input = ( props ) => {
       autoFocus
       placeholder = 'Search titles'
       value = {query}
-      onChange = { e => dispatch(setQuery(e.target.value)) }
+      onChange = { e => dispatch(setQuery(e.target.value)) }  // set serch query state on input change
       >
       </input>
 
